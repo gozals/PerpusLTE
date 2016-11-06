@@ -100,6 +100,14 @@ class AuthorController extends Controller
     {
         if(!Author::destroy($id)) return redirect()->back();
 
+        /* $user = User::whereId($id)
+              ->withTrashed()
+              ->first();
+          $user->restore();*/
+
+        //$user->forceDelete();
+
+
         Session::flash("flash_notification", [
             "level"=>"success",
             "message"=>"Penulis berhasil dihapus"
