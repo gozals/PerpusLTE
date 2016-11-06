@@ -12,7 +12,7 @@
           </div>
 
           <div class="panel-body">
-            <form action="{{route('authors.update', $author->id)}}" method="POST" class="form-horizontal">
+            <form action="{{route('authors.update', $author->slug)}}" method="POST" class="form-horizontal">
               <input name="_method" type="hidden" value="PUT">
               {!! csrf_field() !!}
               @include('authors._form')

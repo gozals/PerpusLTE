@@ -66,7 +66,8 @@ class AuthorController extends Controller
      */
     public function edit($id)
     {
-        $author = Author::find($id);
+        //$author = Author::find($id);
+        $author = Author::where('slug',$id)->first();
         return view('authors.edit')->with(compact('author'));
     }
 
@@ -80,7 +81,8 @@ class AuthorController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, ['name' => 'required|unique:authors,name,'. $id]);
-        $author = Author::find($id);
+        //$author = Author::find($id);
+        $author = Author::where('slug',$id)->first();
         $author->update($request->only('name'));
         Session::flash("flash_notification", [
             "level"=>"success",

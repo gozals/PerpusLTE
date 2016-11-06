@@ -27,7 +27,7 @@
               <td>{{ $author->id }}</td>
               <td>{{ $author->name }}</td>
               <td width="80">
-                <a class="btn btn-primary" href="{{ route('authors.edit', $author->id) }}">Edit</a>
+                <a class="btn btn-primary" href="{{ route('authors.edit', $author->slug) }}">Edit</a>
               </td>
               <td width="80">
                 <form method="POST" action="{{route('authors.destroy', $author->id)}}" accept-charset="UTF-8">
