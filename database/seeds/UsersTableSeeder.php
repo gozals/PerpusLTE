@@ -17,17 +17,17 @@ class UsersTableSeeder extends Seeder
         User::create([
             'name' => 'admin',
             'email' => 'admin@admin.com',
-            'password' => 'admin'
+            'password' => bcrypt('admin')
         ]);
         User::create([
             'name' => 'editor',
             'email' => 'editor@editor.com',
-            'password' => 'editor'
+            'password' => bcrypt('editor')
         ]);
         User::create([
             'name' => 'member',
             'email' => 'member@member.com',
-            'password' => 'member'
+            'password' => bcrypt('member')
         ]);
 
         $faker = \Faker\Factory::create();
