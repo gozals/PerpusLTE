@@ -40,7 +40,7 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <!--
+          <!--
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
@@ -64,8 +64,18 @@
             </div>
           </form>
         </div>
-        -->
         <!-- /.navbar-collapse -->
+          <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+              @if (Auth::check())
+              <li><a href="{{url('/home')}}">Dashboard</a></li>
+              <li><a href="{{route('authors.index')}}">Penulis</a></li>
+              <li><a href="{{url('/admin/books')}}">Buku</a></li>
+              <li><a href="{{url('/admin/members')}}">Member</a></li>
+              <li><a href="#">Peminjaman</a></li>
+              @endif
+          </ul>
+          </div>
 
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
@@ -97,6 +107,7 @@
                   <li class="user-footer">
                     <div class="pull-left">
                       <a href="#" class="btn btn-default btn-flat">Profile</a>
+                      <a href="{{ url('/settings/password') }}" class="btn btn-default btn-flat">Ubah Password</a>
                     </div>
                     <div class="pull-right">
                       <a href="{{ url('/logout') }}"
@@ -126,6 +137,8 @@
   </header>
   <!-- Full Width Column -->
   <div class="content-wrapper">
+
+
     <div class="container">
       <!-- Content Header (Page header)
       <section class="content-header">
@@ -140,9 +153,10 @@
         </ol>
       </section>
       -->
-
       <!-- Main content -->
       <section class="content">
+        @include('layouts._flash')
+
         @yield('content')
       </section>
 
@@ -176,5 +190,7 @@
 <script src="{{asset('js/app.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('js/demo.js')}}"></script>
+
+@yield('scripts')
 </body>
 </html>
