@@ -17,6 +17,7 @@ class RbacSetupTables extends Migration
             $table->string('name')->unique();
             $table->string('display_name')->nullable();
             $table->string('description')->nullable();
+            $table->unsignedInteger('level');
             $table->timestamps();
         });
 
@@ -39,6 +40,7 @@ class RbacSetupTables extends Migration
             $table->string('name')->unique();
             $table->string('display_name')->nullable();
             $table->string('description')->nullable();
+            $table->string('route')->nullable();
             $table->timestamps();
         });
 
