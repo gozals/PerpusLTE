@@ -11,7 +11,7 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('dist/css/AdminLTE.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/AdminLTE.min.css')}}">
     <!-- iCheck -->
     <link rel="stylesheet" href="{{asset('plugins/iCheck/square/blue.css')}}">
 
