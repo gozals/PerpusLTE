@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\BookException;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -204,5 +205,29 @@ class BooksController extends Controller
         ]);
 
         return redirect()->route('books.index');
+    }
+
+    public function borrow($id)
+    {
+        try {
+            $book = Book::findOrFail($id);
+            Auth::user()->borrow($book);
+            Session::flash("flash_notification", [
+                "level"=>"success",
+                "message"=>"Berhasil meminjam $book->title"
+            ]);
+        } catch (BookException $e) {
+            Session::flash("flash_notification", [
+                "level"   => "danger",
+                "message" => $e->getMessage()
+            ]);
+        } catch (ModelNotFoundException $e) {
+            Session::flash("flash_notification", [
+                "level"   => "danger",
+                "message" => "Buku tidak ditemukan."
+            ]);
+        }
+
+        return redirect('/');
     }
 }
