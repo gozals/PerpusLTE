@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/', 'GuestController@index');
 
 Auth::routes();
 
@@ -23,3 +25,10 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth']], function () {
     Route::resource('authors', 'AuthorController');
     Route::resource('books', 'BooksController');
 });
+
+Route::get('books/{book}/borrow', [
+    'middleware' => ['auth'],
+    'as'         => 'guest.books.borrow',
+    'uses'       => 'BooksController@borrow'
+]);
+
