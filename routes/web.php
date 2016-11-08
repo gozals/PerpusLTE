@@ -24,6 +24,9 @@ Route::get('/home', 'HomeController@index');
 Route::group(['prefix'=>'admin', 'middleware'=>['auth']], function () {
     Route::resource('authors', 'AuthorController');
     Route::resource('books', 'BooksController');
+    Route::resource('members', 'MembersController');
+
+
 });
 
 Route::get('books/{book}/borrow', [
