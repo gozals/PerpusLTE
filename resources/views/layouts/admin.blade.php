@@ -76,7 +76,7 @@
               <li><a href="{{route('authors.index')}}">Penulis</a></li>
               <li><a href="{{url('/admin/books')}}">Buku</a></li>
               <li><a href="{{url('/admin/members')}}">Member</a></li>
-              <li><a href="#">Peminjaman</a></li>
+              <li><a href="{{url('/admin/statistics')}}">Peminjaman</a></li>
               @endif
           </ul>
           </div>
