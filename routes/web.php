@@ -23,6 +23,9 @@ Route::get('auth/send-verification', 'Auth\RegisterController@sendVerification')
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('settings/password', 'SettingsController@editPassword');
+Route::post('settings/password', 'SettingsController@updatePassword');
+
 Route::group(['prefix'=>'admin', 'middleware'=>['auth']], function () {
     Route::resource('authors', 'AuthorController');
     Route::resource('books', 'BooksController');
