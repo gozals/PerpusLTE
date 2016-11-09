@@ -18,6 +18,8 @@
 Route::get('/', 'GuestController@index');
 
 Auth::routes();
+Route::get('auth/verify/{token}', 'Auth\RegisterController@verify');
+Route::get('auth/send-verification', 'Auth\RegisterController@sendVerification');
 
 Route::get('/home', 'HomeController@index');
 
@@ -30,6 +32,12 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth']], function () {
         'as'   => 'statistics.index',
         'uses' => 'StatisticsController@index'
     ]);
+
+    Route::resource('users', 'UserController');
+    Route::resource('roles', 'RoleController');
+    Route::resource('permissions', 'PermissionController');
+    Route::get('/role_permission', 'RolePermissionController@index');
+    Route::post('/role_permission', 'RolePermissionController@store');
 });
 
 Route::get('books/{book}/borrow', [

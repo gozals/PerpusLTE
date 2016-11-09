@@ -5,6 +5,7 @@ namespace App;
 use App\Exceptions\BookException;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Mail;
 
 class User extends Authenticatable
 {
@@ -52,6 +53,33 @@ class User extends Authenticatable
 
         $borrowLog = BorrowLog::create(['user_id'=>$this->id, 'book_id'=>$book->id]);
         return $borrowLog;
+    }
+
+    public function generateVerificationToken()
+    {
+        $token = $this->verification_token;
+        if (!$token) {
+            $token = str_random(40);
+            $this->verification_token = $token;
+            $this->save();
+        }
+        return $token;
+    }
+
+    public function sendVerification()
+    {
+        $token = $this->generateVerificationToken();
+        $user = $this;
+        Mail::send('auth.emails.verification', compact('user', 'token'), function ($m) use ($user) {
+            $m->to($user->email, $user->name)->subject('Verifikasi Akun Larapus');
+        });
+    }
+
+    public function verify()
+    {
+        $this->is_verified = 1;
+        $this->verification_token = null;
+        $this->save();
     }
 
     public function getLevelMax()

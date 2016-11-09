@@ -10,6 +10,8 @@
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
 
+    @include('layouts._flash')
+
       <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
           {{ csrf_field() }}
 
