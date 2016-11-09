@@ -6,6 +6,7 @@ use App\Exceptions\BookException;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class User extends Authenticatable
 {
@@ -28,6 +29,23 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    private $rules = [
+        'name' => 'required',
+        'email' => 'required|email|unique:users',
+        'password' => 'required|min:6'
+    ];
+
+    public function validate()
+    {
+        $validator = Validator::make($this->attributes, $this->rules);
+
+        if ($validator->passes()) return true;
+
+        $this->errors = $validator->messages();
+
+        return false;
+    }
 
     public function roles()
     {
