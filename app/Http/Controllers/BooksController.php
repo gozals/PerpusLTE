@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\BorrowLog;
 use Illuminate\Support\Facades\Auth;
 use App\Author;
+use PDF;
 
 class BooksController extends Controller
 {
@@ -297,6 +298,12 @@ class BooksController extends Controller
                 }
             });
         })->export('xls');
+    }
+
+    private function exportPdf($books)
+    {
+        $pdf = PDF::loadview('pdf.books', compact('books'));
+        return $pdf->download('books.pdf');
     }
 
     public function generateExcelTemplate()
