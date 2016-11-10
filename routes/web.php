@@ -44,6 +44,23 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth' , 'authorize']], function
     Route::resource('permissions', 'PermissionController');
     Route::get('/role_permission', 'RolePermissionController@index');
     Route::post('/role_permission', 'RolePermissionController@store');
+
+    Route::get('export/books', [
+        'as'   => 'export.books',
+        'uses' => 'BooksController@export'
+    ]);
+    Route::post('export/books', [
+        'as'   => 'export.books.post',
+        'uses' => 'BooksController@exportPost'
+    ]);
+    Route::get('template/books', [
+        'as'   => 'template.books',
+        'uses' => 'BooksController@generateExcelTemplate'
+    ]);
+    Route::post('import/books', [
+        'as'   => 'import.books',
+        'uses' => 'BooksController@importExcel'
+    ]);
 });
 
 Route::get('books/{book}/borrow', [
