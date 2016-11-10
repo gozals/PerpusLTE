@@ -121,7 +121,7 @@
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">Profile</a>
+                      <a href="{{ url('/settings/profile') }}" class="btn btn-default btn-flat">Profile</a>
                       <a href="{{ url('/settings/password') }}" class="btn btn-default btn-flat">Ubah Password</a>
                     </div>
                     <div class="pull-right">

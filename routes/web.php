@@ -25,6 +25,9 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('settings/password', 'SettingsController@editPassword');
 Route::post('settings/password', 'SettingsController@updatePassword');
+Route::get('settings/profile', 'SettingsController@profile');
+Route::get('settings/profile/edit', 'SettingsController@editProfile');
+Route::post('settings/profile', 'SettingsController@updateProfile');
 
 Route::group(['prefix'=>'admin', 'middleware'=>['auth' , 'authorize']], function () {
     Route::resource('authors', 'AuthorController');
